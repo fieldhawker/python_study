@@ -4,6 +4,7 @@
 import json
 import requests
 
+from project.toybox.toybox import settings
 from logging import getLogger
 logger = getLogger(__name__)
 
@@ -17,13 +18,13 @@ ACCESS_TOKEN_URL = 'https://api.cybozulive.com/oauth/token'
 GROUP_ID_URL = 'https://api.cybozulive.com/api/group/V2'
 
 CONSUMER_TOKEN = {
-    'key': 'dddd',
-    'secret': 'aaaa'
+    'key': settings.CONSUMER_TOKEN_KEY,
+    'secret': settings.CONSUMER_TOKEN_SECRET
 }
 
 USER_ACCOUNT = {
-    'username': 'gggg',
-    'password': 'rrggg',
+    'username': settings.USER_ACCOUNT_USERNAME,
+    'password': settings.USER_ACCOUNT_PASSWROD,
     'mode': 'client_auth'
 }
 

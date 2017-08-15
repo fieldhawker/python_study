@@ -121,3 +121,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 追記
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+CONSUMER_TOKEN_KEY = os.environ.get("CONSUMER_TOKEN_KEY")
+CONSUMER_TOKEN_SECRET = os.environ.get("CONSUMER_TOKEN_SECRET")
+USER_ACCOUNT_USERNAME = os.environ.get("USER_ACCOUNT_USERNAME")
+USER_ACCOUNT_PASSWROD = os.environ.get("USER_ACCOUNT_PASSWROD")
