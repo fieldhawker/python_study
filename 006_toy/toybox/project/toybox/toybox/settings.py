@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'index',
     'cybozulive',
 ]
 
@@ -122,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# 追記
+# 追記 .envの設定を読み込み
 from os.path import join, dirname
 from dotenv import load_dotenv
 

@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('cybozulive.urls', namespace='cybozulive')),
+    url(r'^$', include('index.urls', namespace='index')),
 ]

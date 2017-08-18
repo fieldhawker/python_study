@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from cybozulive import views
+from index import views
 
 urlpatterns = [
     # インデックス
