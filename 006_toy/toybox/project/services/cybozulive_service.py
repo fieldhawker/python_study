@@ -56,6 +56,8 @@ USER_ACCOUNT = {
 DEFAULT_POST_GROUP_NAME = u'自分用グループ'
 REPLACE_GROUP_ID_WORD = 'GROUP,'
 DEFAULT_POST_TOPIC_NAME = u'メモするトピ'
+DEFAULT_POST_MESSAGE = u'テスト投稿 by python'
+
 
 # ----------
 # simpleApi
@@ -68,10 +70,16 @@ DEFAULT_HEADERS = {'Content-Type': 'application/json'}
 
 class CybozuliveService():
 
+    # 投稿先グループが未指定の場合に使用するグループ名称
+    DEFAULT_POST_GROUP_NAME = u'自分用グループ'
+    REPLACE_GROUP_ID_WORD = 'GROUP,'
+    DEFAULT_POST_TOPIC_NAME = u'メモするトピ'
+    DEFAULT_POST_MESSAGE = u'テスト投稿 by python'
+
     access_token = {}
 
     @classmethod
-    def post_message_bulletin_board(self):
+    def post_message_bulletin_board(self, group_name=DEFAULT_POST_GROUP_NAME, topic_name=DEFAULT_POST_TOPIC_NAME, message=DEFAULT_POST_MESSAGE):
         """サイボウズLiveの掲示板にメッセージを投稿する関数
         """
 
@@ -80,19 +88,45 @@ class CybozuliveService():
         token = self.get_access_token()
         logger.info(token)
 
-        group_id = self.get_group_id(token)  # TODO: グループ名称を引数に追加予定
+        group_id = self.get_group_id(token, group_name)
         logger.info(group_id)
 
-        topic_id = self.get_topic_id(token, group_id) # TODO: 掲示板名を引数に追加予定
+        topic_id = self.get_topic_id(token, group_id, topic_name)
         logger.info(topic_id)
 
-        message = 'テスト投稿 by python'
         result = self.post_message(token, group_id, topic_id, message)
         logger.info(result)
 
         logger.info('-- END ---')
 
-        return 'result'
+        return result
+
+    @classmethod
+    def request_token(self):
+
+        consumer = oauth2.Consumer(
+            CONSUMER_TOKEN['key'], CONSUMER_TOKEN['secret'])
+
+        client = oauth2.Client(consumer)
+        client.add_credentials(
+            USER_ACCOUNT['username'], USER_ACCOUNT['password'])
+        client.authorizations
+
+        client.set_signature_method = oauth2.SignatureMethod_HMAC_SHA1()
+
+        params = {}
+        params["x_auth_username"] = USER_ACCOUNT['username']
+        params["x_auth_password"] = USER_ACCOUNT['password']
+        params["x_auth_mode"] = USER_ACCOUNT['mode']
+
+        resp, token = client.request(
+            ACCESS_TOKEN_URL, method="POST", body=urllib.parse.urlencode(params))
+
+        response = {}
+        response['resp'] = resp
+        response['token'] = token
+        logger.info(response)
+        return response
 
     @classmethod
     def get_access_token(self):
@@ -104,33 +138,18 @@ class CybozuliveService():
         token = {}
 
         try:
-            consumer = oauth2.Consumer(
-                CONSUMER_TOKEN['key'], CONSUMER_TOKEN['secret'])
-            client = oauth2.Client(consumer)
-            client.add_credentials(
-                USER_ACCOUNT['username'], USER_ACCOUNT['password'])
-            client.authorizations
 
-            params = {}
-            params["x_auth_username"] = USER_ACCOUNT['username']
-            params["x_auth_password"] = USER_ACCOUNT['password']
-            params["x_auth_mode"] = USER_ACCOUNT['mode']
+            response = self.request_token()
 
-            client.set_signature_method = oauth2.SignatureMethod_HMAC_SHA1()
-            resp, token = client.request(
-                ACCESS_TOKEN_URL, method="POST", body=urllib.parse.urlencode(params))
-
-            logger.debug(resp)
-            logger.debug(token.decode('utf-8'))
-            token = token.decode('utf-8')
-
-            if resp['status'] == '200':
+            if response['resp']['status'] == '200':
                 # oauth_token        : xxxxx
                 # oauth_token_secret : xxxxx
 
-                token = urllib.parse.parse_qs(token)
+                token = urllib.parse.parse_qs(
+                    response['token'].decode('utf-8'))
                 token['oauth_token'] = token['oauth_token'][0]
                 token['oauth_token_secret'] = token['oauth_token_secret'][0]
+                logger.info(token)
 
         except Exception as e:
             token['oauth_token'] = ''
@@ -149,7 +168,8 @@ class CybozuliveService():
         group_id = ''
         params = {}
 
-        response = self.request_cybozulive(token, GROUP_ID_URL)
+        response = self.request_cybozulive('GET', token, GROUP_ID_URL)
+        logger.info(response)
 
         if response['header']['status'] == '200':
 
@@ -210,10 +230,14 @@ class CybozuliveService():
         logger.info('-- START ---')
 
         topic_id = ''
-        params = {}
-        params["group"] = group_id
+        params = {"group".encode('utf-8'): group_id.encode('utf-8')}
+        logger.debug(params)
 
-        response = self.request_cybozulive(token, TOPIC_ID_URL, params)
+        url = TOPIC_ID_URL + '?' + urllib.parse.urlencode(params)
+        logger.debug(url)
+        response = self.request_cybozulive('GET', token, url)
+
+        logger.debug(response)
 
         if response['header']['status'] == '200':
 
@@ -236,9 +260,9 @@ class CybozuliveService():
         """
         logger.info('-- START ---')
 
-        result = false
+        result = 0
 
-        xml_string =  """\
+        xml_string = """\
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"
 xmlns:cbl="http://schemas.cybozulive.com/common/2010"
@@ -252,7 +276,19 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
 </feed>\
 """.format(topic_id=topic_id, message=message)
 
+        logger.debug(xml_string)
 
+        result = self.request_cybozulive_with_xml(
+            'POST', token, COMMENT_URL, xml_string)
+
+        logger.info('-- END ---')
+        return result
+
+    @classmethod
+    def request_cybozulive_with_xml(self, method, token, url=COMMENT_URL, xml_string=None):
+        """サイボウズLiveへのリクエスト処理
+        """
+        logger.info('-- START ---')
 
         try:
             consumer = oauth2.Consumer(
@@ -264,12 +300,17 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
 
             client.authorizations
             client.set_signature_method = oauth2.SignatureMethod_HMAC_SHA1()
-            client.setBody(xml_string);
-            header, body = client.request(COMMENT_URL, 'POST')
 
+            header, body = client.request(url, method, body=xml_string.encode('utf-8'), headers={
+                                          'Content-Type': 'application/atom+xml; charset=utf-8'})
+
+            logger.info(header)
+            logger.info(body)
             if header['status'] == '200':
 
-                result = true
+                result = 1
+                response['header'] = header
+                response['body'] = body
 
         except Exception as e:
 
@@ -280,7 +321,7 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
         return result
 
     @classmethod
-    def request_cybozulive(self, token, url, params=None):
+    def request_cybozulive(self, method, token, url, params=None):
         """サイボウズLiveへのリクエスト処理
         """
         logger.info('-- START ---')
@@ -304,9 +345,11 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
             client.set_signature_method = oauth2.SignatureMethod_HMAC_SHA1()
 
             if params == None:
-                header, body = client.request(url, method="GET")
+                header, body = client.request(url, method=method)
             else:
-                header, body = client.request(url, method="GET", body=urllib.parse.urlencode(params))
+
+                header, body = client.request(
+                    url, method=method, body=urllib.parse.urlencode(params))
 
             logger.debug(header)
             logger.debug(body)
@@ -316,14 +359,12 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
                 response['header'] = header
                 response['body'] = body
 
-
         except Exception as e:
             import traceback
             traceback.print_exc()
 
         logger.info('-- END ---')
         return response
-
 
     def simple_api():
         """getリクエストで単純取得できるRSSの動作確認用
