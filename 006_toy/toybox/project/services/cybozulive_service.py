@@ -14,58 +14,27 @@ from bs4 import BeautifulSoup
 from logging import Formatter, getLogger, FileHandler, StreamHandler, DEBUG
 
 logger = getLogger(__name__)
-if not logger.handlers:
-    log_path = os.path.dirname(os.path.abspath(
-        __file__)) + r'/../logs/unittest.log'
-    formatter = Formatter(
-        '[%(asctime)s][%(levelname)s](%(filename)s:%(lineno)s %(funcName)s) %(message)s')
-
-    fileHandler = FileHandler(log_path)
-    fileHandler.setLevel(DEBUG)
-    fileHandler.setFormatter(formatter)
-    streamHander = StreamHandler()
-    streamHander.setLevel(DEBUG)
-    streamHander.setFormatter(formatter)
-    logger.setLevel(DEBUG)
-    logger.addHandler(fileHandler)
-    logger.addHandler(streamHander)
+# if not logger.handlers:
+#     log_path = os.path.dirname(os.path.abspath(
+#         __file__)) + r'/../logs/unittest.log'
+#     formatter = Formatter(
+#         '[%(asctime)s][%(levelname)s](%(filename)s:%(lineno)s %(funcName)s) %(message)s')
+#
+#     fileHandler = FileHandler(log_path)
+#     fileHandler.setLevel(DEBUG)
+#     fileHandler.setFormatter(formatter)
+#     streamHander = StreamHandler()
+#     streamHander.setLevel(DEBUG)
+#     streamHander.setFormatter(formatter)
+#     logger.setLevel(DEBUG)
+#     logger.addHandler(fileHandler)
+#     logger.addHandler(streamHander)
 # ----------
 # cybozulive
 # ----------
 import oauth2
 import urllib
 import httplib2
-
-ACCESS_TOKEN_URL = 'https://api.cybozulive.com/oauth/token'
-GROUP_ID_URL = 'https://api.cybozulive.com/api/group/V2'
-TOPIC_ID_URL = 'https://api.cybozulive.com/api/board/V2'
-COMMENT_URL = 'https://api.cybozulive.com/api/comment/V2'
-
-CONSUMER_TOKEN = {
-    'key': settings.CONSUMER_TOKEN_KEY,
-    'secret': settings.CONSUMER_TOKEN_SECRET
-}
-
-USER_ACCOUNT = {
-    'username': settings.USER_ACCOUNT_USERNAME,
-    'password': settings.USER_ACCOUNT_PASSWROD,
-    'mode': 'client_auth'
-}
-
-# 投稿先グループが未指定の場合に使用するグループ名称
-DEFAULT_POST_GROUP_NAME = u'自分用グループ'
-REPLACE_GROUP_ID_WORD = 'GROUP,'
-DEFAULT_POST_TOPIC_NAME = u'メモするトピ'
-DEFAULT_POST_MESSAGE = u'テスト投稿 by python'
-
-
-# ----------
-# simpleApi
-# ----------
-HOST = "news.yahoo.co.jp"
-PORT = "80"
-PATH = '/pickup/sports/rss.xml'
-DEFAULT_HEADERS = {'Content-Type': 'application/json'}
 
 
 class CybozuliveService():
@@ -75,6 +44,38 @@ class CybozuliveService():
     REPLACE_GROUP_ID_WORD = 'GROUP,'
     DEFAULT_POST_TOPIC_NAME = u'メモするトピ'
     DEFAULT_POST_MESSAGE = u'テスト投稿 by python'
+
+
+    ACCESS_TOKEN_URL = 'https://api.cybozulive.com/oauth/token'
+    GROUP_ID_URL = 'https://api.cybozulive.com/api/group/V2'
+    TOPIC_ID_URL = 'https://api.cybozulive.com/api/board/V2'
+    COMMENT_URL = 'https://api.cybozulive.com/api/comment/V2'
+
+    CONSUMER_TOKEN = {
+        'key': settings.CONSUMER_TOKEN_KEY,
+        'secret': settings.CONSUMER_TOKEN_SECRET
+    }
+
+    USER_ACCOUNT = {
+        'username': settings.USER_ACCOUNT_USERNAME,
+        'password': settings.USER_ACCOUNT_PASSWROD,
+        'mode': 'client_auth'
+    }
+    #
+    # # 投稿先グループが未指定の場合に使用するグループ名称
+    # DEFAULT_POST_GROUP_NAME = u'自分用グループ'
+    # REPLACE_GROUP_ID_WORD = 'GROUP,'
+    # DEFAULT_POST_TOPIC_NAME = u'メモするトピ'
+    # DEFAULT_POST_MESSAGE = u'テスト投稿 by python'
+
+
+    # ----------
+    # simpleApi
+    # ----------
+    HOST = "news.yahoo.co.jp"
+    PORT = "80"
+    PATH = '/pickup/sports/rss.xml'
+    DEFAULT_HEADERS = {'Content-Type': 'application/json'}
 
     access_token = {}
 
@@ -105,22 +106,22 @@ class CybozuliveService():
     def request_token(self):
 
         consumer = oauth2.Consumer(
-            CONSUMER_TOKEN['key'], CONSUMER_TOKEN['secret'])
+            self.CONSUMER_TOKEN['key'], self.CONSUMER_TOKEN['secret'])
 
         client = oauth2.Client(consumer)
         client.add_credentials(
-            USER_ACCOUNT['username'], USER_ACCOUNT['password'])
+            self.USER_ACCOUNT['username'], self.USER_ACCOUNT['password'])
         client.authorizations
 
         client.set_signature_method = oauth2.SignatureMethod_HMAC_SHA1()
 
         params = {}
-        params["x_auth_username"] = USER_ACCOUNT['username']
-        params["x_auth_password"] = USER_ACCOUNT['password']
-        params["x_auth_mode"] = USER_ACCOUNT['mode']
+        params["x_auth_username"] = self.USER_ACCOUNT['username']
+        params["x_auth_password"] = self.USER_ACCOUNT['password']
+        params["x_auth_mode"] = self.USER_ACCOUNT['mode']
 
         resp, token = client.request(
-            ACCESS_TOKEN_URL, method="POST", body=urllib.parse.urlencode(params))
+            self.ACCESS_TOKEN_URL, method="POST", body=urllib.parse.urlencode(params))
 
         response = {}
         response['resp'] = resp
@@ -168,7 +169,7 @@ class CybozuliveService():
         group_id = ''
         params = {}
 
-        response = self.request_cybozulive('GET', token, GROUP_ID_URL)
+        response = self.request_cybozulive('GET', token, self.GROUP_ID_URL)
         logger.info(response)
 
         if response['header']['status'] == '200':
@@ -182,7 +183,7 @@ class CybozuliveService():
 
                 if entry.find('title').text == group_name:
                     group_id = entry.find('id').text.replace(
-                        REPLACE_GROUP_ID_WORD, '')
+                        self.REPLACE_GROUP_ID_WORD, '')
 
         # try:
         #     consumer = oauth2.Consumer(
@@ -233,7 +234,7 @@ class CybozuliveService():
         params = {"group".encode('utf-8'): group_id.encode('utf-8')}
         logger.debug(params)
 
-        url = TOPIC_ID_URL + '?' + urllib.parse.urlencode(params)
+        url = self.TOPIC_ID_URL + '?' + urllib.parse.urlencode(params)
         logger.debug(url)
         response = self.request_cybozulive('GET', token, url)
 
@@ -279,7 +280,7 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
         logger.debug(xml_string)
 
         result = self.request_cybozulive_with_xml(
-            'POST', token, COMMENT_URL, xml_string)
+            'POST', token, self.COMMENT_URL, xml_string)
 
         logger.info('-- END ---')
         return result
@@ -292,7 +293,7 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
 
         try:
             consumer = oauth2.Consumer(
-                CONSUMER_TOKEN['key'], CONSUMER_TOKEN['secret'])
+                self.CONSUMER_TOKEN['key'], self.CONSUMER_TOKEN['secret'])
             token = oauth2.Token(
                 token['oauth_token'], token['oauth_token_secret'])
 
@@ -309,6 +310,7 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
             if header['status'] == '200':
 
                 result = 1
+                response = {}
                 response['header'] = header
                 response['body'] = body
 
@@ -332,7 +334,7 @@ xmlns:cblCmnt="http://schemas.cybozulive.com/comment/2010">
 
         try:
             consumer = oauth2.Consumer(
-                CONSUMER_TOKEN['key'], CONSUMER_TOKEN['secret'])
+                self.CONSUMER_TOKEN['key'], self.CONSUMER_TOKEN['secret'])
             token = oauth2.Token(
                 token['oauth_token'], token['oauth_token_secret'])
 
