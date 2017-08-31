@@ -2,7 +2,7 @@
 # import logging
 # import logging.config
 
-from logging import basicConfig, DEBUG
+#from logging import basicConfig, DEBUG
 
 # これはメインのファイルにのみ書く
 # basicConfig(level=DEBUG)

@@ -15,6 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# プロジェクトのルート。
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+# パッケージのルート(settings.pyの入っているディレクトリ)
+PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -39,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'index',
     'cybozulive',
+    'api',
+    'rest_framework',
+    'accounts',
+    'event',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +129,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# 特定のアプリと関係のないstaticファイルの格納場所
+STATIC_PATH = os.path.join(PACKAGE_ROOT, 'static')
+STATICFILES_DIRS = (
+    STATIC_PATH,
+)
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
 
 # 追記 .envの設定を読み込み
 from os.path import join, dirname
@@ -134,3 +152,9 @@ CONSUMER_TOKEN_KEY = os.environ.get("CONSUMER_TOKEN_KEY")
 CONSUMER_TOKEN_SECRET = os.environ.get("CONSUMER_TOKEN_SECRET")
 USER_ACCOUNT_USERNAME = os.environ.get("USER_ACCOUNT_USERNAME")
 USER_ACCOUNT_PASSWROD = os.environ.get("USER_ACCOUNT_PASSWROD")
+
+LOGIN_ERROR_URL = '/accounts/login'
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/accounts/index/'
+
+AUTH_USER_MODEL = 'accounts.AuthUser'

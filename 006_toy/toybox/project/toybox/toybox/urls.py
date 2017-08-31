@@ -16,8 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('cybozulive.urls', namespace='cybozulive')),
+    url(r'^cybozulive/', include('cybozulive.urls', namespace='cybozulive')),
+    url(r'^api/', include('api.urls', namespace='api')),
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^event/', include('event.urls', namespace='event')),
     url(r'^$', include('index.urls', namespace='index')),
 ]
