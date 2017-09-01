@@ -1,0 +1,195 @@
+[2017/08/16 11:46:08][WARNING](base.py:152 get_response) Not Found: /
+[2017/08/16 11:46:08][WARNING](base.py:152 get_response) Not Found: /favicon.ico
+[2017/08/16 11:46:39][ERROR](exception.py:135 handle_uncaught_exception) Internal Server Error: /api/
+Traceback (most recent call last):
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\project\toybox\cybozulive\views.py", line 23, in postMessage
+    aaa = cybozuliveService.cybozuAuth()
+NameError: name 'cybozuliveService' is not defined
+[2017/08/16 11:48:07][WARNING](base.py:152 get_response) Not Found: /api/index.html
+[2017/08/16 11:48:26][ERROR](exception.py:135 handle_uncaught_exception) Internal Server Error: /api/index/
+Traceback (most recent call last):
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\project\toybox\cybozulive\views.py", line 12, in index
+    {'index': aaa})    # à¯êî
+NameError: name 'aaa' is not defined
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:50:25][WARNING](base.py:152 get_response) Not Found: /api/static/assets/ico/favicon.png
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:50:28][WARNING](base.py:152 get_response) Not Found: /api/static/assets/ico/favicon.png
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:50:31][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:56:40][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:56:41][WARNING](base.py:152 get_response) Not Found: /api/static/assets/ico/favicon.png
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:57:03][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:57:04][WARNING](base.py:152 get_response) Not Found: /api/static/assets/ico/favicon.png
+[2017/08/16 11:57:08][WARNING](base.py:152 get_response) Not Found: /favicon.ico
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:57:26][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/jquery.min.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/bootstrap.css
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/font-awesome.min.css
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/css/main.css
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/modernizr.custom.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/classie.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/bootstrap.min.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/smoothscroll.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/js/main.js
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/logo.png
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c1.png
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c2.png
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/img/c3.png
+[2017/08/16 11:57:27][WARNING](base.py:152 get_response) Not Found: /api/static/assets/ico/favicon.png
+[2017/08/16 11:57:39][ERROR](exception.py:135 handle_uncaught_exception) Internal Server Error: /api/
+Traceback (most recent call last):
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\project\toybox\cybozulive\views.py", line 23, in postMessage
+    aaa = cybozuliveService.cybozuAuth()
+NameError: name 'cybozuliveService' is not defined
+[2017/08/16 11:57:39][WARNING](base.py:152 get_response) Not Found: /favicon.ico
+[2017/08/16 11:58:44][ERROR](exception.py:135 handle_uncaught_exception) Internal Server Error: /api/
+Traceback (most recent call last):
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\bp-takano\Documents\GitHub\python_study\006_toy\toybox\lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view cybozulive.views.postMessage didn't return an HttpResponse object. It returned None instead.
+[2017/08/16 15:48:53][WARNING](base.py:152 get_response) Not Found: /
